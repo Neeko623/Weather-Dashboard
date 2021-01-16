@@ -1,0 +1,65 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500&display=swap');
+
+*{
+  font-family: Bodoni Moda;
+}
+/* color-theme */
+:root {
+  --primary: #ffedec;
+  --secondary: #FFEFFF;
+  --mainfontcolor: #734F96;
+}
+
+/* header-style */
+.title{
+  font-size: 60px;
+  color: white;
+  justify-content: center;
+}
+.jumbotron {
+  text-align: center;
+  background-color: #734F96;
+}
+
+/* others */
+h3.temp, h3.humidity, h3.wind-speed, h3 {
+  font-size: 1.5rem;
+  color: var(--mainfontcolor);
+  line-height: normal;
+}
+/* body-style */
+body {
+  background-color: var(--primary);
+}
+
+/* main section */
+.container-fluid{
+  padding-left: 80px;
+  margin-right: 5px;
+}
+.form-inline{
+  margin-right: 70px;
+}
+.card {
+  position: relative;
+  flex-direction: column;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}

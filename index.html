@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Page Title -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="jumbotron">
+      <h1 class="title">Weather Dashboard</h1>
+    </header>
+
+  <!-- Container -->
+  <div class="container-fluid">
+    <!-- Row -->
+    <div class="row">
+      <!-- Column -->
+      <aside>
+        <h5>Search for a City:</h5>
+        <!-- Seach Form -->
+        <form class="form-inline">
+          <!-- Input -->
+          <input class="form-control searchInput" type="text" id="city" />
+          <!-- Btn -->
+          <div class="input-group-append">
+          <button class="btn btn-primary" id="search-button"> <i class="fa fa-search"></i> </button>
+        </div>
+        </form>
+        <!-- Search History List -->
+        <ul class="list-group history"></ul>
+           <button class="btn btn-clear" id="clear-button"><i class="fa fa-trash-o" aria-hidden="true">
+              Clear Search History</i></button>
+      </aside>
+           <!-- results section -->
+           <section id="result-wrapper" class="results col-lg-9 card">
+
+            <!-- current forecast section -->
+            <div class="weather-container">
+            <div id="current-city" class="current-style card-body border-secondary">
+                <!-- append current weather here -->
+                <img id="icon"></img>
+                <h3 class="temp" id="temp">Temperature: </h3>
+                <h3 class="humidity" id="humidity">Humidity: </h3> 
+                <h3 class="wind-speed" id="wind-speed">Wind Speed: </h3>
+                <h3>UV-Index:
+                  <span class="current bg-danger rounded py-0 px-4 text-white" id="uv-index"></span></h3> 
+            </div>
+          </div>
+
+            <!-- 5 day forecast section -->
+            <section>
+                <!--Row for future data to be dumped here-->
+                <div class="col-sm-12" id ="future-weather">
+                  <h2>5-Day Forecast:</h2>
+                  <div class="row text-light">
+                      <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                          <p id="fDate0"></p>
+                          <img id="fImg0"></img>
+                          <p>Temp: <span id="fTemp0"></span></p>
+                          <p>Humidity: <span id="fHumidity0"></span></p>
+                      </div>
+                      <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                          <p id="fDate1"></p>
+                          <img id="fImg1"></img>
+                          <p>Temp: <span id="fTemp1"></span></p>
+                          <p>Humidity: <span id="fHumidity1"></span></p>
+                      </div>
+                      <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                          <p id="fDate2"></p>
+                          <img id="fImg2"></img>
+                          <p>Temp: <span id="fTemp2"></span></p>
+                          <p>Humidity: <span id="fHumidity2"></span></p>
+                      </div>
+                      <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                          <p id="fDate3"></p>
+                          <img id="fImg3"></img>
+                          <p>Temp: <span id="fTemp3"></span></p>
+                          <p>Humidity: <span id="fHumidity3"></span></p>
+                      </div>
+                      <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                          <p id="fDate4"></p>
+                          <img id="fImg4"></img>
+                          <p>Temp: <span id="fTemp4"></span></p>
+                          <p>Humidity: <span id="fHumidity4"></span></p>
+                      </div>
+                  </div>
+              </div>
+            </section>
+      </div>
+   </div> 
+    <!-- moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- Local JS file -->
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -50,10 +50,13 @@ searchBtn.addEventListener("click", function (event) {
           cityList.push(cityName)
       }
       localStorage.setItem("city_list",JSON.stringify(cityList));
+      //function
     }
   } else {
     alert("Invaild Input");
   }
+  console.log(cityList.length);
+  pastsearch(cityList);
 });
 
 // Display the current weather after grabing the city name form the input text box.
@@ -112,3 +115,15 @@ clearBtn.addEventListener("click", function (event) {
   localStorage.setItem("city_list", JSON.stringify([]));
   cityList = "";
   })
+
+// past search
+ function pastsearch(cityList){
+  search_history_list.innerHTML="";
+  for(var i = 0; i < cityList.length; i++){
+    console.log(cityList[i]);
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = cityList[i].city;
+    search_history_list.appendChild(buttonEl);
+  }
+ }
+

@@ -104,3 +104,11 @@ function foreCast(resp) {
     }
   });
 }
+
+// clear localStorage
+var clearBtn = document.getElementById("clear-button");
+clearBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  localStorage.setItem("city_list", JSON.stringify([]));
+  cityList = "";
+  })

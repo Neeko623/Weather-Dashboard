@@ -1,3 +1,5 @@
+var num = 0;
+
 // get API
 function getCoordAPI(cityName) {
   let myCoordAPI =
@@ -42,21 +44,20 @@ searchBtn.addEventListener("click", function (event) {
     //add to storage
     cityList = JSON.parse(localStorage.getItem("city_list"));
     if (!cityList || cityList.length == 0) {
-      cityList = [cityName]
-      localStorage.setItem("city_list",JSON.stringify(cityList));
-    }
-    else {
+      cityList = [cityName];
+      localStorage.setItem("city_list", JSON.stringify(cityList));
+    } else {
       if (cityList.indexOf(cityName) == -1) {
-          cityList.push(cityName)
+        cityList.push(cityName);
       }
-      localStorage.setItem("city_list",JSON.stringify(cityList));
+      localStorage.setItem("city_list", JSON.stringify(cityList));
       //function
     }
   } else {
     alert("Invaild Input");
   }
-  console.log(cityList.length);
   pastsearch(cityList);
+  assignCity(cityList);
 });
 
 // Display the current weather after grabing the city name form the input text box.
@@ -77,7 +78,7 @@ function drawWeather(response) {
   // display weather humidity
   document.getElementById("humidity").innerHTML =
     "Humidity: " + cur.humidity + "%";
-   // display weather uv-index
+  // display weather uv-index
   document.getElementById("uv-index").innerHTML = cur.uvi;
 }
 
@@ -87,13 +88,12 @@ function foreCast(resp) {
   daily.map((itm, i) => {
     if (i < 5) {
       // get forecast dates
-      var dateFormat = new Date (daily[i].dt * 1000).toLocaleDateString("en-US");
+      var dateFormat = new Date(daily[i].dt * 1000).toLocaleDateString("en-US");
       document.getElementById("fDate" + i).innerHTML = dateFormat;
 
       // get forecast icon images
       var foreCastIcon = daily[i].weather[0].icon + ".png";
-      foreCastIconImg =
-        "https://openweathermap.org/img/w/" + foreCastIcon;
+      foreCastIconImg = "https://openweathermap.org/img/w/" + foreCastIcon;
       document.getElementById("fImg" + i).src = foreCastIconImg;
 
       // get forecast temperature
@@ -102,8 +102,8 @@ function foreCast(resp) {
 
       // get forecast humidity
       var foreCastHumidity = daily[i].humidity;
-      document.getElementById("fHumidity"+ i).innerHTML = foreCastHumidity + "%";
-
+      document.getElementById("fHumidity" + i).innerHTML =
+        foreCastHumidity + "%";
     }
   });
 }
@@ -114,16 +114,44 @@ clearBtn.addEventListener("click", function (event) {
   event.preventDefault();
   localStorage.setItem("city_list", JSON.stringify([]));
   cityList = "";
-  })
+  deleteHistoryBtn();
+});
 
 // past search
- function pastsearch(cityList){
-  search_history_list.innerHTML="";
-  for(var i = 0; i < cityList.length; i++){
-    console.log(cityList[i]);
+function pastsearch(cityList) {
+  search_history_list.innerHTML = "";
+  for (var i = 0; i < cityList.length; i++) {
+    // console.log(cityList[i]);
     var buttonEl = document.createElement("button");
-    buttonEl.textContent = cityList[i].city;
+    buttonEl.id = "searchCity" + i;
+    buttonEl.textContent = cityList[i];
     search_history_list.appendChild(buttonEl);
   }
- }
+  num = cityList.length;
+  console.log(num);
+}
 
+// display
+function assignCity(cityList) {
+  var btnArr = [];
+
+  for (i = 0; i < cityList.length; i++) {
+    btnArr[i] = document.getElementById("searchCity" + i);
+  }
+
+  btnArr.map((itm) => {
+    itm.addEventListener("click", function () {
+      getCoordAPI(itm.innerHTML);
+    });
+  });
+}
+
+function deleteHistoryBtn(){
+ 
+  for (i = 0; i < num; i++) {
+    var btn = document.getElementById("searchCity" + i);
+    btn.remove();
+  }
+  num = 0;
+
+}

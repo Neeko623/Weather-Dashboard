@@ -1,11 +1,9 @@
-var num = 0;
-
-// get API
+// get API and fetch data
 function getCoordAPI(cityName) {
   let myCoordAPI =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" + // openweather
     cityName +
-    "&appid=833bc0f4fbfc23c222c8f06e4c764de6";
+    "&appid=833bc0f4fbfc23c222c8f06e4c764de6"; // my key
   fetch(myCoordAPI)
     .then(function (response) {
       return response.json();
@@ -56,13 +54,19 @@ searchBtn.addEventListener("click", function (event) {
   } else {
     alert("Invaild Input");
   }
-  pastsearch(cityList);
-  assignCity(cityList);
+  pastsearch(cityList); // display past search cities
+  assignCity(cityList); // retreive back to current weather of the city location
 });
 
 // Display the current weather after grabing the city name form the input text box.
 function drawWeather(response) {
   var cur = response.current;
+  console.log(response);
+  //current date
+  var currentdate = new Date(cur.dt * 1000).toLocaleDateString("en-US");
+  document.getElementById("currentdate").innerHTML = currentdate;
+  //city name
+  document.getElementById("cityname").innerHTML = response.timezone;
   // convert to celcius
   var celcius = Math.round(parseFloat(cur.temp) - 273.15);
   document.getElementById("temp").innerHTML = "Temperature: " + celcius + "°C";
@@ -90,16 +94,13 @@ function foreCast(resp) {
       // get forecast dates
       var dateFormat = new Date(daily[i].dt * 1000).toLocaleDateString("en-US");
       document.getElementById("fDate" + i).innerHTML = dateFormat;
-
       // get forecast icon images
       var foreCastIcon = daily[i].weather[0].icon + ".png";
       foreCastIconImg = "https://openweathermap.org/img/w/" + foreCastIcon;
       document.getElementById("fImg" + i).src = foreCastIconImg;
-
       // get forecast temperature
       var foreCastTemp = Math.round(parseFloat(daily[i].temp.max) - 273.15);
       document.getElementById("fTemp" + i).innerHTML = foreCastTemp + "°C";
-
       // get forecast humidity
       var foreCastHumidity = daily[i].humidity;
       document.getElementById("fHumidity" + i).innerHTML =
@@ -117,21 +118,32 @@ clearBtn.addEventListener("click", function (event) {
   deleteHistoryBtn();
 });
 
-// past search
+// detele all history search
+var num = 0;
+
+function deleteHistoryBtn(){
+  for (i = 0; i < num; i++) {
+    var btn = document.getElementById("searchCity" + i);
+    btn.remove();
+  }
+  num = 0;
+}
+
+// past search display below search input
 function pastsearch(cityList) {
   search_history_list.innerHTML = "";
   for (var i = 0; i < cityList.length; i++) {
-    // console.log(cityList[i]);
     var buttonEl = document.createElement("button");
     buttonEl.id = "searchCity" + i;
     buttonEl.textContent = cityList[i];
     search_history_list.appendChild(buttonEl);
   }
   num = cityList.length;
-  console.log(num);
+  // console.log(num);
+  console.log(buttonEl.id);
 }
 
-// display
+// display all the search and get the current weather
 function assignCity(cityList) {
   var btnArr = [];
 
@@ -146,12 +158,3 @@ function assignCity(cityList) {
   });
 }
 
-function deleteHistoryBtn(){
- 
-  for (i = 0; i < num; i++) {
-    var btn = document.getElementById("searchCity" + i);
-    btn.remove();
-  }
-  num = 0;
-
-}

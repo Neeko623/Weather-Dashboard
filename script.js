@@ -83,7 +83,22 @@ function drawWeather(response) {
   document.getElementById("humidity").innerHTML =
     "Humidity: " + cur.humidity + "%";
   // display weather uv-index
-  document.getElementById("uv-index").innerHTML = cur.uvi;
+   document.getElementById("uv-index").innerHTML = cur.uvi;
+   document.getElementById("uv-index").style.backgroundColor = getUVIColor(cur.uvi);
+ 
+}
+function getUVIColor(uvi) {
+  if (uvi < 3) {
+    return "red";
+  }
+
+  if (uvi < 6) {
+    return "green";
+  }
+
+  else {
+    return "blue";
+  }
 }
 
 // Display the following 5 day forecast weather

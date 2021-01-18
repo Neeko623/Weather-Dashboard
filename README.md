@@ -23,6 +23,7 @@ Aside, presented with current and future conditions for that city.
 ![Screenshot1](screenshots/1.png)
 ![Screenshot2](screenshots/2.png)
 ![Screenshot3](screenshots/3.png)
-
+![Screenshot3](screenshots/4.png)
+![Screenshot3](screenshots/5.png)
 # Link to Webpage
 [Weather Dashboard](https://neeko623.github.io/Weather-Dashboard/)
